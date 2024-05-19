@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class KDishApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KDishApplication.class, args);
+        SpringApplication.run(KDishApplication.class);
     }
 
 }

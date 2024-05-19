@@ -1,13 +1,16 @@
 package com.example.k_dish.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "dish")
-@Data
-@EqualsAndHashCode(callSuper = false)
+@AttributeOverride(name = "id", column = @Column(name = "`dh_id`"))
+@Getter
+@Setter
+@ToString
 public class Dish extends AbstractEntity {
 
     @Column(name = "name")
@@ -24,7 +27,19 @@ public class Dish extends AbstractEntity {
     @JoinColumn(name = "id_special_offer", referencedColumnName = "id")
     private SpecialOffer specialOffer;
 
-    @ManyToOne
-    @JoinColumn(name = "id_ingredients", referencedColumnName = "id")
-    private Ingredients ingredients;
+    @ManyToMany()
+    @JoinTable(
+            name = "dish_ingredients",
+            joinColumns = @JoinColumn(name = "dh_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredients_id")
+    )
+    private Set<Ingredients> ingredients = new HashSet<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "dish_cook",
+            joinColumns = @JoinColumn(name = "dh_id"),
+            inverseJoinColumns = @JoinColumn(name = "cook_id")
+    )
+    private Set<Cook> dhCooks = new HashSet<>();
 }
