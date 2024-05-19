@@ -12,5 +12,4 @@ public class MenuDto {
     private Integer id;
     private String name;
     private Time timeOfAction;
-    private Set<DishDto> mnDishes;
 }

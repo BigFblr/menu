@@ -12,5 +12,4 @@ public class SpecialOfferDto {
     private Integer id;
     private String name;
     private Date dateOfAction;
-    private Set<DishDto> soDishes;
 }

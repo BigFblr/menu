@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/cook")
 public class CookController extends AbstractController<Cook> {
-    @Autowired
     private final CookService cookService;
 
     @Autowired
@@ -36,6 +35,16 @@ public class CookController extends AbstractController<Cook> {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(cooks, headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createCook(@RequestBody Cook cook) {
+        try {
+            cookService.save(cook);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
