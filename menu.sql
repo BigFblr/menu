@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS menu;
+USE menu;
+
 -- MySQL dump 10.13  Distrib 8.2.0, for Win64 (x86_64)
 --
 -- Host: localhost    Database: menu
@@ -80,14 +83,11 @@ CREATE TABLE `dish` (
   `cost` float NOT NULL,
   `id_menu` int DEFAULT NULL,
   `id_special_offer` int DEFAULT NULL,
-  `id_ingredients` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_menu` (`id_menu`),
   KEY `id_special_offer` (`id_special_offer`),
-  KEY `id_ingredients` (`id_ingredients`),
   CONSTRAINT `dish_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id`),
-  CONSTRAINT `dish_ibfk_2` FOREIGN KEY (`id_special_offer`) REFERENCES `special_offer` (`id`),
-  CONSTRAINT `dish_ibfk_3` FOREIGN KEY (`id_ingredients`) REFERENCES `ingredients` (`id`)
+  CONSTRAINT `dish_ibfk_2` FOREIGN KEY (`id_special_offer`) REFERENCES `special_offer` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,6 +123,34 @@ LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `dish_ingredients`
+--
+DROP TABLE IF EXISTS `dish_ingredients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dish_ingredients` (
+  `id` int NOT NULL,
+  `dish_id` int DEFAULT NULL,
+  `ingredients_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `dish_id` (`dish_id`),
+  KEY `ingredients_id` (`ingredients_id`),
+  CONSTRAINT `dish_ingredients_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
+  CONSTRAINT `dish_ingredients_ibfk_2` FOREIGN KEY (`ingredients_id`) REFERENCES `ingredients` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dish_ingredients`
+--
+
+LOCK TABLES `dish_ingredients` WRITE;
+/*!40000 ALTER TABLE `dish_ingredients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dish_ingredients` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `menu`
