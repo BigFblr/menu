@@ -14,7 +14,7 @@ public class CookServiceImpl implements CookService {
     private CookRepository cookRepository;
 
     @Override
-    public Cook read(Integer id) {
+    public Cook read(Long id) {
         return cookRepository.findById(id).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class CookServiceImpl implements CookService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         cookRepository.deleteById(id);
     }
 

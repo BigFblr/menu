@@ -14,7 +14,7 @@ public class DishServiceImpl implements DishService {
     private DishRepository dishRepository;
 
     @Override
-    public Dish read(Integer id) {
+    public Dish read(Long id) {
         return dishRepository.findById(id).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         dishRepository.deleteById(id);
     }
 

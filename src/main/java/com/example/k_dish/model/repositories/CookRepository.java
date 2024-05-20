@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CookRepository extends JpaRepository<Cook, Integer> {
+public interface CookRepository extends JpaRepository<Cook, Long> {
     List<Cook> findByName(String name);
     List<Cook> findByPhone(int phone);
 }

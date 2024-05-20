@@ -5,10 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "cook")
-@AttributeOverride(name = "id", column = @Column(name = "`ck_id`"))
 @Getter @Setter @ToString
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class Cook extends AbstractEntity {
 
     @Column(name = "name")

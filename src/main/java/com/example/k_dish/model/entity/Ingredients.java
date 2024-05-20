@@ -5,10 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "ingredients")
-@AttributeOverride(name = "id", column = @Column(name = "`ig_id`"))
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 public class Ingredients extends AbstractEntity {
 
     @Column(name = "name")

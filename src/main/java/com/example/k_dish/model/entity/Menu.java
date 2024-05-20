@@ -8,10 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "menu")
-@AttributeOverride(name = "id", column = @Column(name = "`mn_id`"))
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 public class Menu extends AbstractEntity {
 
     @Column(name = "name")
@@ -23,9 +20,10 @@ public class Menu extends AbstractEntity {
     @ManyToMany()
     @JoinTable(
             name = "menu_dish",
-            joinColumns = @JoinColumn(name = "mn_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
+            joinColumns = @JoinColumn(name = "id_menu"),
+            inverseJoinColumns = @JoinColumn(name = "id_dish")
     )
-    private Set<Dish> mnDishes = new HashSet<>();
+    private Set<Dish> menunDishes = new HashSet<>();
 }
+
 

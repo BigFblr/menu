@@ -15,7 +15,7 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
     private SpecialOfferRepository specialOfferRepository;
 
     @Override
-    public SpecialOffer read(Integer id) {
+    public SpecialOffer read(Long id) {
         return specialOfferRepository.findById(id).orElse(null);
     }
 
@@ -30,7 +30,7 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         specialOfferRepository.deleteById(id);
     }
 

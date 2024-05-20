@@ -8,15 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface SpecialOfferRepository extends JpaRepository<SpecialOffer, Integer> {
+public interface SpecialOfferRepository extends JpaRepository<SpecialOffer, Long> {
     List<SpecialOffer> findByName(String name);
 
-    // Найти предложения, действующие на определенную дату
     List<SpecialOffer> findByDateOfAction(Date date);
 
-    // Найти предложения, действующие до определенной даты
     List<SpecialOffer> findByDateOfActionBefore(Date date);
 
-    // Найти предложения, действующие после определенной даты
     List<SpecialOffer> findByDateOfActionAfter(Date date);
 }

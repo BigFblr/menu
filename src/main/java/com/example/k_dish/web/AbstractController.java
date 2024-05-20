@@ -28,7 +28,7 @@ public abstract class AbstractController<T extends AbstractEntity> {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable Integer id) {
+    public ResponseEntity<T> getById(@PathVariable Long id) {
         T entity = getService().read(id);
         if (entity == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,7 +49,7 @@ public abstract class AbstractController<T extends AbstractEntity> {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Integer id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         getService().delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

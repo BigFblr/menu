@@ -14,7 +14,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     private IngredientsRepository ingredientsRepository;
 
     @Override
-    public Ingredients read(Integer id) {
+    public Ingredients read(Long id) {
         return ingredientsRepository.findById(id).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         ingredientsRepository.deleteById(id);
     }
 

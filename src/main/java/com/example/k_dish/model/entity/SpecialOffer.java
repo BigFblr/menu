@@ -10,10 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "special_offer")
-@AttributeOverride(name = "id", column = @Column(name = "`so_id`"))
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 public class SpecialOffer extends AbstractEntity {
 
     @Column(name = "name")
@@ -25,8 +22,8 @@ public class SpecialOffer extends AbstractEntity {
     @ManyToMany()
     @JoinTable(
             name = "special_offer_dish",
-            joinColumns = @JoinColumn(name = "so_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
+            joinColumns = @JoinColumn(name = "id_special_offer"),
+            inverseJoinColumns = @JoinColumn(name = "id_dish")
     )
     private Set<Dish> soDishes = new HashSet<>();
 }
