@@ -23,7 +23,7 @@ public class Menu extends AbstractEntity {
             joinColumns = @JoinColumn(name = "id_menu"),
             inverseJoinColumns = @JoinColumn(name = "id_dish")
     )
-    private Set<Dish> menunDishes = new HashSet<>();
+    private Set<Dish> menuDishes = new HashSet<>();
 }
 
 
