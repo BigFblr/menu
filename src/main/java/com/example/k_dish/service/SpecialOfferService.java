@@ -9,4 +9,5 @@ public interface SpecialOfferService extends Service<SpecialOffer> {
     List<SpecialOffer> readByDateOfAction(Date date);
     List<SpecialOffer> readByDateOfActionBefore(Date date);
     List<SpecialOffer> readByDateOfActionAfter(Date date);
+    List<SpecialOffer> readByDiscountPercentage(Double discountPercentage);
 }

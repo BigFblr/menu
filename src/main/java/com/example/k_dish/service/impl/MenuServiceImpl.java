@@ -1,7 +1,7 @@
 package com.example.k_dish.service.impl;
 
 import com.example.k_dish.model.entity.Menu;
-import com.example.k_dish.model.repositories.MenuRepository;
+import com.example.k_dish.repositories.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.k_dish.service.MenuService;
 import org.springframework.stereotype.Service;

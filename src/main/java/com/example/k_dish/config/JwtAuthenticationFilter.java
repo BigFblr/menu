@@ -1,5 +1,7 @@
-package com.example.k_dish.security.config;
+package com.example.k_dish.config;
 
+import com.example.k_dish.service.JwtService;
+import com.example.k_dish.service.impl.UserServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.example.k_dish.security.service.*;
 
 import java.io.IOException;
 
@@ -24,7 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     public static final String BEARER_PREFIX = "Bearer ";
     public static final String HEADER_NAME = "Authorization";
     private final JwtService jwtService;
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Override
     protected void doFilterInternal(

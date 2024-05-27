@@ -1,4 +1,4 @@
-package com.example.k_dish.model.repositories;
+package com.example.k_dish.repositories;
 
 import com.example.k_dish.model.entity.SpecialOffer;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,9 +11,7 @@ import java.util.List;
 public interface SpecialOfferRepository extends JpaRepository<SpecialOffer, Long> {
     List<SpecialOffer> findByName(String name);
 
-    List<SpecialOffer> findByDateOfAction(Date date);
+    SpecialOffer findByDateOfAction(Date date);
 
-    List<SpecialOffer> findByDateOfActionBefore(Date date);
-
-    List<SpecialOffer> findByDateOfActionAfter(Date date);
+    List<SpecialOffer> findByDiscountPercentage(Double discountPercentage);
 }

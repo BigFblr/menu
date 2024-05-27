@@ -1,4 +1,4 @@
-package com.example.k_dish.security.service;
+package com.example.k_dish.service;
 
 
 import io.jsonwebtoken.Claims;
@@ -9,7 +9,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import com.example.k_dish.security.domain.model.User;
+import com.example.k_dish.model.entity.User;
 
 import java.security.Key;
 import java.util.Date;
@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    @Value("${53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855}")
+    @Value("53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855")
     private String jwtSigningKey;
 
     public String extractUserName(String token) {
@@ -48,7 +48,7 @@ public class JwtService {
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 365))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
     }
 

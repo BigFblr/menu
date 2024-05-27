@@ -1,13 +1,14 @@
 package com.example.k_dish.service.impl;
 
 import com.example.k_dish.model.entity.SpecialOffer;
-import com.example.k_dish.model.repositories.SpecialOfferRepository;
+import com.example.k_dish.repositories.SpecialOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.k_dish.service.SpecialOfferService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SpecialOfferServiceImpl implements SpecialOfferService {
@@ -41,16 +42,28 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
 
     @Override
     public List<SpecialOffer> readByDateOfAction(Date date) {
-        return specialOfferRepository.findByDateOfAction(date);
+        return specialOfferRepository.findAll()
+                .stream()
+                .filter(specialOffer -> specialOffer.getDateOfAction().equals(date))
+                .collect(Collectors.toList());
     }
-
     @Override
     public List<SpecialOffer> readByDateOfActionBefore(Date date) {
-        return specialOfferRepository.findByDateOfActionBefore(date);
+        return specialOfferRepository.findAll()
+                .stream()
+                .filter(specialOffer -> specialOffer.getDateOfAction().before(date))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<SpecialOffer> readByDateOfActionAfter(Date date) {
-        return specialOfferRepository.findByDateOfActionAfter(date);
+        return specialOfferRepository.findAll()
+                .stream()
+                .filter(specialOffer -> specialOffer.getDateOfAction().after(date))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<SpecialOffer> readByDiscountPercentage(Double discountPercentage) {
+        return specialOfferRepository.findByDiscountPercentage(discountPercentage);
     }
 }

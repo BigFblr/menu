@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/ingredients")
+@RequestMapping("/ingredients")
 public class IngredientsController extends AbstractController<Ingredients> {
     @Autowired
     private final IngredientsService ingredientsService;

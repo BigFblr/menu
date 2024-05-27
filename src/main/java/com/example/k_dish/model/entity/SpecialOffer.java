@@ -19,6 +19,9 @@ public class SpecialOffer extends AbstractEntity {
     @Column(name = "date_of_action")
     private Date dateOfAction;
 
+    @Column(name = "discount_percentage")
+    private Double discountPercentage;
+
     @ManyToMany()
     @JoinTable(
             name = "special_offer_dish",

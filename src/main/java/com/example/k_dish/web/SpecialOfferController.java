@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/specialOffer")
+@RequestMapping("/specialOffer")
 public class SpecialOfferController extends AbstractController<SpecialOffer> {
     @Autowired
     private final SpecialOfferService specialOfferService;
@@ -29,7 +29,14 @@ public class SpecialOfferController extends AbstractController<SpecialOffer> {
         }
         return new ResponseEntity<>(specialOffers, headers, HttpStatus.OK);
     }
-
+    @GetMapping("/discount/{discountPercentage}")
+    public ResponseEntity<List<SpecialOffer>> getSpecialOffersByDiscount(@PathVariable Double discountPercentage) {
+        List<SpecialOffer> specialOffers = specialOfferService.readByDiscountPercentage(discountPercentage);
+        if (specialOffers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(specialOffers, headers, HttpStatus.OK);
+    }
     @GetMapping("/date/{date}")
     public ResponseEntity<List<SpecialOffer>> getSpecialOffersByDate(@PathVariable Date date) {
         List<SpecialOffer> specialOffers = specialOfferService.readByDateOfAction(date);
@@ -38,7 +45,6 @@ public class SpecialOfferController extends AbstractController<SpecialOffer> {
         }
         return new ResponseEntity<>(specialOffers, headers, HttpStatus.OK);
     }
-
     @Override
     public SpecialOfferService getService() {
         return specialOfferService;

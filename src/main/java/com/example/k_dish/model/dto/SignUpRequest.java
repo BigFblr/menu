@@ -1,4 +1,4 @@
-package com.example.k_dish.security.domain.dto;
+package com.example.k_dish.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

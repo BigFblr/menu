@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/menu?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false
     username: root
-    password: 1111
+    password: KirTheCat228
   # JPA properties
   jpa:
     hibernate:
@@ -20,11 +20,10 @@ spring:
     # database-platform: org.hibernate.dialect.MySQL55Dialect
     #  open-in-view: false
     generate-ddl: true
-
+  token:
+        signing:
+          key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
   spring:
     application:
       name: k_dish
 
-      token:
-        signing:
-          key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
