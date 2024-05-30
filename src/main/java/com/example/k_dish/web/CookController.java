@@ -5,6 +5,7 @@ import com.example.k_dish.service.CookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class CookController extends AbstractController<Cook> {
         this.cookService = cookService;
     }
 
+@PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Cook>> getCooksByName(@PathVariable String name) {
         List<Cook> cooks = cookService.readByName(name);
@@ -28,6 +30,7 @@ public class CookController extends AbstractController<Cook> {
         return new ResponseEntity<>(cooks, headers, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/phone/{phone}")
     public ResponseEntity<List<Cook>> getCooksByPhone(@PathVariable int phone) {
         List<Cook> cooks = cookService.readByPhone(phone);
@@ -37,6 +40,7 @@ public class CookController extends AbstractController<Cook> {
         return new ResponseEntity<>(cooks, headers, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> createCook(@RequestBody Cook cook) {
         try {
