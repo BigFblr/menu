@@ -1,6 +1,7 @@
 package com.example.k_dish.service.impl;
 
 import com.example.k_dish.model.entity.Dish;
+import com.example.k_dish.model.entity.Cook;
 import com.example.k_dish.repositories.DishRepository;
 import com.example.k_dish.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> readByCost(float cost) {
+    public List<Dish> readByCost(double cost) {
         return dishRepository.findByCost(cost);
+    }
+    @Override
+    public List<Dish> readByCook(Cook cook) {
+        return dishRepository.findByCook(cook);
     }
 }

@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                         // Можно указать конкретный путь, * - 1 уровень вложенности, ** - любое количество уровней вложенности
                         .requestMatchers("/users/sign_up", "/users/sign_in", "/get-admin").permitAll()
-                        .requestMatchers("/dish/name/{name}", "/dish/cost/{cost}", "/ingredients/name/{name}", "/menu/name/{name}").hasRole("USER")
+                        .requestMatchers("/dish/name/{name}", "/ingredients/name/{name}", "/menu/name/{name}").hasRole("USER")
                         .requestMatchers("/cook/create", "/dish/create", "/ingredients/create", "/menu/create", "/specialOffer/create", "/dish/cost/{cost}").hasRole("ADMIN")
 //                        .requestMatchers(тут доступ к эндпоинтам для админа).hasRole("ADMIN")
                         .anyRequest().authenticated())

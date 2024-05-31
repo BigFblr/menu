@@ -16,7 +16,7 @@ public class Dish extends AbstractEntity {
     private String name;
 
     @Column(name = "cost")
-    private float cost;
+    private double cost;
 
     @ManyToOne
     @JoinColumn(name = "id_menu", nullable = false)
