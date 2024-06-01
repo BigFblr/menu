@@ -11,5 +11,5 @@ import java.util.List;
 public interface DishRepository extends JpaRepository<Dish, Long> {
     List<Dish> findByName(String name);
     List<Dish> findByCost(double cost);
-    List<Dish> findByCook(Cook cook);
+    List<Dish> findByMenuId(Long menuId);
 }

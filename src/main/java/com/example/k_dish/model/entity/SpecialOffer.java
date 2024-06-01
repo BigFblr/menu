@@ -21,12 +21,4 @@ public class SpecialOffer extends AbstractEntity {
 
     @Column(name = "discount_percentage")
     private Double discountPercentage;
-
-    @ManyToMany()
-    @JoinTable(
-            name = "special_offer_dish",
-            joinColumns = @JoinColumn(name = "id_special_offer"),
-            inverseJoinColumns = @JoinColumn(name = "id_dish")
-    )
-    private Set<Dish> soDishes = new HashSet<>();
 }

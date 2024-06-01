@@ -44,7 +44,7 @@ public class DishServiceImpl implements DishService {
         return dishRepository.findByCost(cost);
     }
     @Override
-    public List<Dish> readByCook(Cook cook) {
-        return dishRepository.findByCook(cook);
+    public List<Dish> readByMenu(Long menuId) {
+        return dishRepository.findByMenuId(menuId);
     }
 }

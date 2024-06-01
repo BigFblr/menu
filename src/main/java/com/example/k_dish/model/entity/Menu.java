@@ -16,14 +16,6 @@ public class Menu extends AbstractEntity {
 
     @Column(name = "time_of_action")
     private Time timeOfAction;
-
-    @ManyToMany()
-    @JoinTable(
-            name = "menu_dish",
-            joinColumns = @JoinColumn(name = "id_menu"),
-            inverseJoinColumns = @JoinColumn(name = "id_dish")
-    )
-    private Set<Dish> menuDishes = new HashSet<>();
 }
 
 

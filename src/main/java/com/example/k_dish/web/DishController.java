@@ -62,15 +62,9 @@ public class DishController extends AbstractController<Dish> {
         }
     }
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/cook/{cookId}/dish")
-    public ResponseEntity<List<Dish>> getDishesByCook(@PathVariable Long cookId) {
-        Cook cook = cookService.read(cookId);
-
-        if (cook == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        List<Dish> dishes = dishService.readByCook(cook);
+    @GetMapping("/menu/{menuId}")
+    public ResponseEntity<List<Dish>> getDishesByMenu(@PathVariable Long menuId) {
+        List<Dish> dishes = dishService.readByMenu(menuId);
 
         if (dishes.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -78,7 +72,6 @@ public class DishController extends AbstractController<Dish> {
 
         return new ResponseEntity<>(dishes, headers, HttpStatus.OK);
     }
-
     @Override
     public DishService getService() {
         return dishService;
