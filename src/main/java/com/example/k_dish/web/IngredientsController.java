@@ -21,7 +21,17 @@ public class IngredientsController extends AbstractController<Ingredients> {
     public IngredientsController(IngredientsService ingredientsService) {
         this.ingredientsService = ingredientsService;
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/all")
+    public ResponseEntity<List<Ingredients>> getAllIngredients() {
+        List<Ingredients> allIngredients = ingredientsService.getAllIngredients();
+        if (allIngredients.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(allIngredients, HttpStatus.OK);
+    }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Ingredients>> getIngredientsByName(@PathVariable String name) {
         List<Ingredients> ingredients = ingredientsService.readByName(name);
@@ -36,6 +46,26 @@ public class IngredientsController extends AbstractController<Ingredients> {
         try {
             ingredientsService.save(ingredients);
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("/update/{ingredientId}")
+    public ResponseEntity<?> updateIngredient(@PathVariable Long ingredientId, @RequestBody Ingredients updatedIngredient) {
+        try {
+            ingredientsService.update(ingredientId, updatedIngredient);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/delete/{ingredientId}")
+    public ResponseEntity<?> deleteIngredient(@PathVariable Long ingredientId) {
+        try {
+            ingredientsService.delete(ingredientId);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

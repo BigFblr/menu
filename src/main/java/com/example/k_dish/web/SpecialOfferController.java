@@ -23,7 +23,7 @@ public class SpecialOfferController extends AbstractController<SpecialOffer> {
     public SpecialOfferController(SpecialOfferService specialOfferService) {
         this.specialOfferService = specialOfferService;
     }
-
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/name/{name}")
     public ResponseEntity<List<SpecialOffer>> getSpecialOffersByName(@PathVariable String name) {
         List<SpecialOffer> specialOffers = specialOfferService.readByName(name);
@@ -32,6 +32,7 @@ public class SpecialOfferController extends AbstractController<SpecialOffer> {
         }
         return new ResponseEntity<>(specialOffers, headers, HttpStatus.OK);
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/discount/{discountPercentage}")
     public ResponseEntity<List<SpecialOffer>> getSpecialOffersByDiscount(@PathVariable Double discountPercentage) {
         List<SpecialOffer> specialOffers = specialOfferService.readByDiscountPercentage(discountPercentage);
@@ -40,6 +41,7 @@ public class SpecialOfferController extends AbstractController<SpecialOffer> {
         }
         return new ResponseEntity<>(specialOffers, headers, HttpStatus.OK);
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/date/{date}")
     public ResponseEntity<List<SpecialOffer>> getSpecialOffersByDate(@PathVariable Date date) {
         List<SpecialOffer> specialOffers = specialOfferService.readByDateOfAction(date);

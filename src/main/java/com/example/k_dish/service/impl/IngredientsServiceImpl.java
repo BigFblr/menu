@@ -37,4 +37,15 @@ public class IngredientsServiceImpl implements IngredientsService {
     public List<Ingredients> readByName(String name) {
         return ingredientsRepository.findByName(name);
     }
+    @Override
+    public List<Ingredients> getAllIngredients() {
+        return ingredientsRepository.findAll();
+    }
+    @Override
+    public List<Ingredients> update(Long ingredientId, Ingredients updatedIngredient) {
+        Ingredients existingIngredient = ingredientsRepository.findById(ingredientId)
+                .orElseThrow(() -> new IllegalArgumentException("Ingredient not found with ID: " + ingredientId));
+        ingredientsRepository.save(existingIngredient);
+        return ingredientsRepository.findAll();
+    }
 }

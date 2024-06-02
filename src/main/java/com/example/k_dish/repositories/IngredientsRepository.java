@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface IngredientsRepository extends JpaRepository<Ingredients, Long> {
     List<Ingredients> findByName(String name);
+
 }

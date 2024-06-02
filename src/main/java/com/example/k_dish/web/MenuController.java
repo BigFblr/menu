@@ -21,7 +21,7 @@ public class MenuController extends AbstractController<Menu> {
     public MenuController(MenuService menuService) {
         this.menuService = menuService;
     }
-
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Menu>> getMenusByName(@PathVariable String name) {
         List<Menu> menus = menuService.readByName(name);

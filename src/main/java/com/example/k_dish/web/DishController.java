@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class DishController extends AbstractController<Dish> {
     public DishController(DishService dishService) {
         this.dishService = dishService;
     }
-
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Dish>> getDishesByName(@PathVariable String name) {
         List<Dish> dishes = dishService.readByName(name);
@@ -63,15 +65,19 @@ public class DishController extends AbstractController<Dish> {
     }
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/menu/{menuId}")
-    public ResponseEntity<List<Dish>> getDishesByMenu(@PathVariable Long menuId) {
+    public ResponseEntity<List<String>> getDishNamesByMenu(@PathVariable Long menuId) {
         List<Dish> dishes = dishService.readByMenu(menuId);
+        List<String> dishNames = dishes.stream()
+                .map(Dish::getName)
+                .collect(Collectors.toList());
 
-        if (dishes.isEmpty()) {
+        if (dishNames.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<>(dishes, headers, HttpStatus.OK);
+        return new ResponseEntity<>(dishNames, headers, HttpStatus.OK);
     }
+
     @Override
     public DishService getService() {
         return dishService;
