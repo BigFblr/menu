@@ -73,9 +73,8 @@ public class IngredientsController extends AbstractController<Ingredients> {
  @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all/record")
     public ResponseEntity<Long> getRecordIngredients() {
-       Long record = ingredientsService.recordIngredients() {
+       Long record = ingredientsService.recordIngredients();
         return new ResponseEntity<>(record, HttpStatus.OK);
-    }
 }
 
     @Override
