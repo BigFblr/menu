@@ -70,6 +70,13 @@ public class IngredientsController extends AbstractController<Ingredients> {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+ @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/all/record")
+    public ResponseEntity<Long> getRecordIngredients() {
+       Long record = ingredientsService.recordIngredients() {
+        return new ResponseEntity<>(record, HttpStatus.OK);
+    }
+}
 
     @Override
     public IngredientsService getService() {
