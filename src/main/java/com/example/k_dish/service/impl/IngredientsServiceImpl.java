@@ -48,4 +48,8 @@ public class IngredientsServiceImpl implements IngredientsService {
         ingredientsRepository.save(existingIngredient);
         return ingredientsRepository.findAll();
     }
+    @Override
+    public Long recordIngredients(){
+    return ingredientsRepository.count();
+    }
 }
